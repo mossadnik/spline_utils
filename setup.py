@@ -13,8 +13,8 @@ def _read(fname):
 
 setup(
     name='spline_utils',
-    version='0.0.1',
-    description='collection of functions for using splines for regression',
+    version='0.1.0',
+    description='spline encoder and collection of functions for using splines for regression',
     long_description=_read("Readme.md"),
     author='Matthias Ossadnik',
     author_email='ossadnik.matthias@gmail.com',
@@ -23,10 +23,10 @@ setup(
     package_dir={'': 'src'},
     url="https://github.com/mossadnik/spline_utils.git",
     setup_requires=['pytest-runner'],
-    install_requires=[],
+    install_requires=['numpy', 'scipy'],
     tests_require=['pytest'],
     classifiers=[
-        'Development Status :: 1 - Planning',
+        'Development Status :: 3 - Alpha',
         'Intended Audience :: Science/Research',
         'License :: OSI Approved :: MIT License',
         'Programming Language :: Python :: 3',
