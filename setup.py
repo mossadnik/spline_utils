@@ -14,7 +14,7 @@ def _read(fname):
 setup(
     name='spline_utils',
     version='0.1.0',
-    description='spline encoder and collection of functions for using splines for regression',
+    description='utilities for spline regression',
     long_description=_read("Readme.md"),
     author='Matthias Ossadnik',
     author_email='ossadnik.matthias@gmail.com',
@@ -24,7 +24,8 @@ setup(
     url="https://github.com/mossadnik/spline_utils.git",
     setup_requires=['pytest-runner'],
     install_requires=['numpy', 'scipy'],
-    tests_require=['pytest'],
+    tests_require=['pytest', 'sklearn'],
+    extras_require=['sklearn'],
     classifiers=[
         'Development Status :: 3 - Alpha',
         'Intended Audience :: Science/Research',

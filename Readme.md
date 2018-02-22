@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/mossadnik/spline_utils.svg?branch=master)](https://travis-ci.org/mossadnik/spline_utils)
+
 # spline-utils - spline encoder and collection of functions for using splines for regression
 
 This module contains a pure numpy implementation of B-splines, an sklearn compatible encoder, as well as utility functions for
