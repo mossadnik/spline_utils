@@ -23,9 +23,8 @@ setup(
     package_dir={'': 'src'},
     url="https://github.com/mossadnik/spline_utils.git",
     setup_requires=['pytest-runner'],
-    install_requires=['numpy', 'scipy'],
+    install_requires=['numpy', 'scipy', 'sklearn'],
     tests_require=['pytest', 'sklearn'],
-    extras_require=['sklearn'],
     classifiers=[
         'Development Status :: 3 - Alpha',
         'Intended Audience :: Science/Research',
