@@ -17,49 +17,41 @@ While scipy already wraps a b-spline implementation, the module ships with its o
 
 # Installation
 
-Clone the repository and run
-
 ```
-pip install .
+pip install git+https://github.com/mossadnik/spline_utils
 ```
-
-from the top directory.
 
 # Basic usage
 
-The simplest interface is the `SplineEncoder` (requires [scikit-learn] to be installed):
+The simplest interface is the `SplineEncoder` (requires [scikit-learn](https://scikit-learn.org) to be installed):
 
-```
->>> import numpy as np
->>> from spline_utils.encoder import SplineEncoder
+```python
+import numpy as np
+from spline_utils.encoder import SplineEncoder
 
->>> x = np.arange(50, dtype=float)
->>> encoder = SplineEncoder(knots=4).fit(x)
->>> encoder.transform(np.array([0]))
+x = np.arange(50, dtype=float)
+encoder = SplineEncoder(knots=4).fit(x)
+encoder.transform(np.array([0]))
+
 array([[1., 0., 0., 0., 0., 0.]])
-
->>> encoder.transform(np.array([25]))
-array([[0.        , 0.02585445, 0.45119593, 0.48560124, 0.03734838,
-        0.        ]])
 ```
 
 There is optional handling of missing values. These are added as an additional column, so that rows still sum to one:
 
-```
->>> x[1] = np.nan
->>> encoder = SplineEncoder(knots=4, nullable=True).fit(x)
->>> encoder.transform(x[:2])
+```python
+x[1] = np.nan
+encoder = SplineEncoder(knots=4, nullable=True).fit(x)
+encoder.transform(x[:2])
 array([[1., 0., 0., 0., 0., 0., 0.],
        [0., 0., 0., 0., 0., 0., 1.]])
 ```
 
-For penalized regression / smoothing splines there is a function that creates a curvature penalty matrix as well as projectors onto the linear and constant parts (see examples folder):
+For penalized regression / smoothing splines you can create a curvature penalty matrix as well as projectors onto the linear and constant parts (see examples folder):
 
-```
->>> import spline_utils as spl
->>> penalty = spl.get_cubic_spline_penalty(encoder.knots_, return_nullspace=False)
->>> penalty.shape
-(6, 6)
+```python
+import spline_utils as spl
+
+penalty = spl.get_cubic_spline_penalty(encoder.knots_, return_nullspace=False)
 ```
 
 # Up next

@@ -74,7 +74,7 @@ def quantile_knots(x, n=8, order=3, a=None, b=None):
     return add_boundary_knots(res, order=order, a=a, b=b)
 
 
-def get_cubic_spline_penalty(knots, return_null_space=False):
+def get_cubic_spline_penalty(knots, return_nullspace=False):
     """Get penalty matrices for cubic splines.
 
     see e.g. https://arxiv.org/abs/0707.0143
@@ -88,7 +88,7 @@ def get_cubic_spline_penalty(knots, return_null_space=False):
     knots : array
         knots of the spline
 
-    return_null_space : bool
+    return_nullspace : bool
         whether to return null-space projectors
 
     Returns
@@ -122,14 +122,14 @@ def get_cubic_spline_penalty(knots, return_null_space=False):
     # add small offset to ensure positivity
     res += 1e-8 * np.eye(res.shape[0])
 
-    if not return_null_space:
+    if not return_nullspace:
         return res
 
     # orthogonal nullspace weight vectors for const / linear term
     nullspace = np.ones((2, res.shape[0]))
     k = 3
     # linear apart from offset
-    w = np.cumsum(knots[k:-1] - knots[:-k-1]) / k
+    w = np.cumsum(knots[k:-1] - knots[:-k - 1]) / k
     # subtract projection on constant vector
     w -= w.mean()
     nullspace[1] = w
